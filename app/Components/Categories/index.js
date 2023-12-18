@@ -4,11 +4,9 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useQuery } from "react-query";
 
-
-
-export default  function Newest() {
-    const { isLoading, error, data } = useQuery('repoData', () =>
-    fetch('https://fakestoreapi.com/products').then(res =>
+export default  function Categories() {
+    const { isLoading, error, data } = useQuery('catData', () =>
+    fetch('https://fakestoreapi.com/products/categories').then(res =>
       res.json()
     )
   )
@@ -77,8 +75,6 @@ export default  function Newest() {
                   </div>
                 </div>
               </div>
-             
-           
             </div>
           ))}
         </div>

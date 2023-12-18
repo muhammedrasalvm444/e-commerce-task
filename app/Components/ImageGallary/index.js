@@ -7,7 +7,6 @@ const ImageGallery = ( images ) => {
   const handleImageChange = (image) => {
     setBigImage(image);
   };
-  console.log("imGES",images);
 
   return (
     <div className="grid gap-4 lg:grid-cols-5">

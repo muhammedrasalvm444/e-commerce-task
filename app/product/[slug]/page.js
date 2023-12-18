@@ -1,31 +1,44 @@
-// import AddToCartButton from "@/app/components/AddToCartButton";
-// import CheckOutNowButton from "@/app/components/CheckOutNowButton";
 "use client";
-
 import AddToCartButton from "@/app/Components/AddToCartButton";
 import ImageGallery from "@/app/Components/ImageGallary";
 import { Button } from "@/components/ui/button";
 import { Star, Truck } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { Dimmer, Loader, Segment } from "semantic-ui-react";
 
 
 const detailPage = (params) => {
-    console.log("params",params);
-    const { isLoading, error, data } = useQuery('repoData', () =>
+    const { isLoading, error, data } = useQuery('productData', () =>
     fetch(`https://fakestoreapi.com/products/${params?.params?.slug}`).then(res =>
       res.json()
     )
   )
 
-  if (isLoading) return 'Loading...'
 
   if (error) return 'An error has occurred: ' + error.message
-  console.log("data",data);
  
-
+const [count, setCount] = useState(1)
+const handleCountChangePlus=()=>{
+  setCount(count+1)
+}
+const handleCountChangeMinus=()=>{
+  setCount(count-1)
+}
   return (
     <div className="bg-white">
+    {isLoading?
+    <div className="flex flex-col items-center justify-center h-screen max-w-full">
+
+    <Segment>
+      <Dimmer active>
+        <Loader><p className="text-red-600">Loading...</p></Loader>
+      </Dimmer>
+
+    </Segment>
+
+    
+  </div>:
       <div className="max-w-screen-xl px-4 mx-auto md:px-8 sm:mx-4 sm:px-4">
         <div className="grid gap-8 md:grid-cols-2">
           {" "}
@@ -64,41 +77,25 @@ const detailPage = (params) => {
               <span className="text-sm">2-4 Days</span>
             </div>
             <div className="flex items-center gap-3 mt-6 mb-6 cursor-pointer">
-              {/* <Button>Add to cart</Button> */}
-              {/* <AddToCartButton
-                name={data?.name}
-                price={data?.price}
-                id={data?._id}
-                image={data?.image}
-                currency="USD"
-                desc={data?.description}
-                price_id={data?.price_id}
-              />
-              <CheckOutNowButton
-                name={data?.name}
-                price={data?.price}
-                id={data?._id}
-                image={data?.image}
-                currency="USD"
-                desc={data?.description}
-                price_id={data?.price_id}
-              /> */}
+            <Button onClick={handleCountChangeMinus} disabled={count<=1}>
+-
+            </Button>
+        <p>{count}</p>
+            <Button onClick={handleCountChangePlus}>
+    +
+            </Button>
+             
             </div>
             <div className="mt-10 mb-4 md:mb-18">
               <p className="text-justify text-medium">{data?.description}</p>
             </div>
-               {/* <AddToCartButton
-                name={data?.name}
-                price={data?.price}
-                id={data?._id}
-                image={data?.image}
-                currency="USD"
-                desc={data?.description}
-                price_id={data?.price_id}
-              /> */}
+               <AddToCartButton
+           data={data}
+           count={count}
+              />
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };

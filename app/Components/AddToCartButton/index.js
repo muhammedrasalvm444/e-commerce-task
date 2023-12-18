@@ -4,28 +4,17 @@ import React from "react";
 
 
 const AddToCartButton = ({
-  name,
-  id,
-  price,
-  image,
-  desc,
-  currency,
-  price_id,
+  product,count
 }) => {
-  console.log("prod", price_id);
-  const product = {
-    name: name,
-    id: id,
-    price: price,
-    desc: desc,
-    currency: currency,
-    price_id: price_id,
-  };
+ const {addToCart}=useAppContext()
+
   return (
     <>
-    <Button>
+    <Link href="/" onClick={()=>{addToCart(product,count)}}>
+    <Button >
       Add to cart
     </Button>
+    </Link>
     </>
   );
 };

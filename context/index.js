@@ -1,14 +1,28 @@
-const { createContext, useContext, useState, useMemo } = require("react");
-
+const { createContext, useContext, useState, useMemo, useReducer } = require("react");
+import reducer from "../reducer/cart_reducer"
 const AppContext = createContext()
 export function AppWrapper({ children }) {
-    const [first, setfirst] = useState("hellp")
+  const initialState={
+    cart:[],
+    total_amount:"",
+    total_items:"",
+    shipping_fee:""
+  }
+  const [state,dispatch]=useReducer(reducer,initialState)
+  
+    const addToCart=(product,count)=>{
+      dispatch({type:"ADD_TO_CART",payload:product,count})
+
+    }
+  
     const contextValue = useMemo(
         () => ({
-            first, setfirst
+          addToCart,
+          ...state
         }),
         [
-            first, setfirst
+          addToCart,
+          state
         
         ]
       );

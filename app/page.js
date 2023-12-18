@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Categories from './Components/Categories'
 import Hero from './Components/Hero'
 import Newest from './Components/Newest'
 

@@ -21,7 +21,6 @@ export function CartModal() {
     redirectToCheckout,
   } = useShoppingCart();
 
-  console.log("cartDetails", cartDetails);
 
   
 
