@@ -29,7 +29,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between max-w-2xl px-4 py-2 mx-auto sm:px-6 lg:max-w-7xl">
         <Link href={"/"}>
           <h1 className="text-2xl font-bold md:text-4xl text-redColor">
-           E <span className="lg:hidden">Commerce</span>
+           E <span className="">Commerce</span>
           </h1>
         </Link>
         <div className="flex items-center">
