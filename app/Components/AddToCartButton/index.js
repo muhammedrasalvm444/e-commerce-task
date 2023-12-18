@@ -1,13 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React from "react";
+import { useAppContext } from "../../../context";
 
 
 const AddToCartButton = ({
   product,count
 }) => {
- const {addToCart}=useAppContext()
-
+const {state}=useAppContext()
+console.log("state",state);
   return (
     <>
     <Link href="/" onClick={()=>{addToCart(product,count)}}>

@@ -18,7 +18,7 @@ export function CartModal() {
     cartDetails,
     removeItem,
     totalPrice,
-    redirectToCheckout,
+    
   } = useShoppingCart();
 
 
